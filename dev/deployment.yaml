@@ -20,12 +20,16 @@ spec:
         livenessProbe:
           exec:
             command:
-              - "echo"
-          initialDelaySeconds: 5   # 启动后等待 5 秒进行首次检查
-          periodSeconds: 10        # 每 10 秒进行检查一      # 连续 3 次失败认为容器不健康
+              - "ps"
+              - "aux"  # 检查是否有 python 进程在运行
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          failureThreshold: 3
         readinessProbe:
           exec:
             command:
-              - "echo"
-          initialDelaySeconds: 5   # 启动后等待 5 秒进行首次检查
-          periodSeconds: 10        # 每 10 秒进行检查一次      # 连续 3 次失败认为容器未准备好接收流量
+              - "ps"
+              - "aux"  # 检查是否有 python 进程在运行
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          failureThreshold: 3
