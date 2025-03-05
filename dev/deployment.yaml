@@ -18,20 +18,20 @@ spec:
         ports:
         - containerPort: 80
         readinessProbe:
-            exec:
-              command:
-                - "sh"
-                - "-c"
-                - "ps aux | grep python"  # 检查 Python 进程是否运行
-            initialDelaySeconds: 5  # 容器启动后 5 秒开始检查
-            periodSeconds: 10  # 每 10 秒检查一次
-            timeoutSeconds: 2   # 每次检查的超时时间
-          livenessProbe:
-            exec:
-              command:
-                - "sh"
-                - "-c"
-                - "ps aux | grep python"  # 检查 Python 进程是否运行
-            initialDelaySeconds: 10  # 容器启动后 10 秒开始检查
-            periodSeconds: 10  # 每 10 秒检查一次
-            timeoutSeconds: 2 
+          exec:
+            command:
+              - "sh"
+              - "-c"
+              - "ps aux | grep python"  # 检查 Python 进程是否运行
+          initialDelaySeconds: 5  # 容器启动后 5 秒开始检查
+          periodSeconds: 10  # 每 10 秒检查一次
+          timeoutSeconds: 2   # 每次检查的超时时间
+        livenessProbe:
+          exec:
+            command:
+              - "sh"
+              - "-c"
+              - "ps aux | grep python"  # 检查 Python 进程是否运行
+          initialDelaySeconds: 10  # 容器启动后 10 秒开始检查
+          periodSeconds: 10  # 每 10 秒检查一次
+          timeoutSeconds: 2  # 每次检查的超时时间
