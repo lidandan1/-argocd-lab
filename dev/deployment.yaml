@@ -17,19 +17,3 @@ spec:
         image: ghcr.io/lidandan1/docker/hellow_word:v1
         ports:
         - containerPort: 80
-        livenessProbe:
-          exec:
-            command:
-              - "ps"
-              - "aux"  # 检查是否有 python 进程在运行
-          initialDelaySeconds: 5
-          periodSeconds: 10
-          failureThreshold: 3
-        readinessProbe:
-          exec:
-            command:
-              - "ps"
-              - "aux"  # 检查是否有 python 进程在运行
-          initialDelaySeconds: 5
-          periodSeconds: 10
-          failureThreshold: 3
