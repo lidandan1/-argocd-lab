@@ -18,16 +18,18 @@ spec:
         ports:
         - containerPort: 80
         livenessProbe:
-          httpGet:
-            path: /healthz    # 这是容器健康检查的路径，你可以根据你的应用实际提供的健康检查路径调整
-            port: 80
-          initialDelaySeconds: 5   # 启动后等待 5 秒后进行首次检查
-          periodSeconds: 10        # 每 10 秒检查一次
-          failureThreshold: 3       # 连续 3 次失败后认为容器不健康，会自动重启容器
+          exec:
+            command:
+              - "echo"
+              - "health check"
+          initialDelaySeconds: 5   # 启动后等待 5 秒进行首次检查
+          periodSeconds: 10        # 每 10 秒进行检查一次
+          failureThreshold: 3       # 连续 3 次失败认为容器不健康
         readinessProbe:
-          httpGet:
-            path: /readiness      # 这是容器准备好接收流量的路径，你可以根据实际情况调整
-            port: 80
-          initialDelaySeconds: 5   # 启动后等待 5 秒后进行首次检查
-          periodSeconds: 10        # 每 10 秒检查一次
-          failureThreshold: 3       # 连续 3 次失败后认为容器未准备好接收流量
+          exec:
+            command:
+              - "echo"
+              - "readiness check"
+          initialDelaySeconds: 5   # 启动后等待 5 秒进行首次检查
+          periodSeconds: 10        # 每 10 秒进行检查一次
+          failureThreshold: 3       # 连续 3 次失败认为容器未准备好接收流量
