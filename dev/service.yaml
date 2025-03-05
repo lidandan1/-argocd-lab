@@ -7,5 +7,7 @@ spec:
     app: helloworld
   ports:
     - protocol: TCP
-      port: 80  # 服务暴露的端口
-      targetPort: 8080  # 容器内部的端口
+      port: 80
+      targetPort: 80
+      nodePort: 30001
+  type: NodePort
