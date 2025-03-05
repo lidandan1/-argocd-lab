@@ -1,14 +1,13 @@
-# application.yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: helloworld-app
+  name: myapp-argo-application
   namespace: argocd
 spec:
   project: default
 
   source:
-    repoURL: https://github.com/lidandan1/-argocd-lab.git
+    repoURL: https://github.com/yangchuansheng/argocd-lab.git
     targetRevision: HEAD
     path: dev
   destination: 
